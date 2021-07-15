@@ -1,0 +1,17 @@
+A SORTING algorithm is an algorithm that puts elements of a list in a certain order.
+
+Criteria for analysis:
+
+1. Number of comparisons
+2. Number of swaps
+3. Adaptive - If the array is already sorted take minimum time to sort the array.
+4. Stable - If the array is sorted on some criteria and we change the criteria. Now, if we have duplicates we need to preserve the original order of the elements.
+   Ex. 
+         Student - A B C D E F G H
+	   Marks - 1 3 4 5 6 7 5 5
+   Above the items are sorted on the basis of names if we sort them on the basis of marks, then we have 3 duplicates of 5. So, we need to preserve original order i.e.,
+   D, G, H.
+
+
+Note: Bubble, insertion and merge are the only adaptive sort techniques.
+      Bubble and insertion are the only stable sort techniques.

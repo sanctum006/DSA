@@ -1,0 +1,27 @@
+The SELECTION sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning.
+
+The algorithm maintains two subarrays in a given array.
+1) The subarray which is already sorted. 
+2) Remaining subarray which is unsorted.
+In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray.
+
+The maximum number of swaps in selection sort are O(N) and maximum number of comparisons are O(N^2).
+
+Time Complexity: O(N^2)
+Space Compexity: O(1)
+
+CODE:
+
+for (int i = 0; i < n - 1; i++)
+{
+    int k, j;
+    for (k = j = i; j < n; j++)
+    {
+	if (arr[j] < arr[i])
+	    k = j;
+    }
+
+    swap(arr[k], arr[i]);
+}
+
+The selection sort algorithm is niether stable nor adaptive.
