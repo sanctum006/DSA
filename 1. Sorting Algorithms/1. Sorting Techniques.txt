@@ -4,7 +4,7 @@ Criteria for analysis:
 
 1. Number of comparisons
 2. Number of swaps
-3. Adaptive - If the array is already sorted take minimum time to sort the array.
+3. Adaptive - If the array is already sorted take minimum time to finish sorting.
 4. Stable - If the array is sorted on some criteria and we change the criteria. Now, if we have duplicates we need to preserve the original order of the elements.
    Ex. 
          Student - A B C D E F G H

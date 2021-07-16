@@ -1,4 +1,5 @@
-/*Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it. That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+/*
+Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it. That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
 
 Return the answer in an array.
 
@@ -18,7 +19,7 @@ For nums[4]=3 there exist three smaller numbers than it (1, 2 and 2).
 
 using namespace std;
 
-// O(N) Brute force solution
+// O(N^2) Brute force solution
 // vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
 
 //         vector<int> result;

@@ -1,0 +1,49 @@
+It picks an element as pivot and partitions the given array around the picked pivot. There are many different versions of quickSort that pick pivot in different ways. 
+1. Always pick first element as pivot.
+2. Always pick last element as pivot (implemented below)
+3. Pick a random element as pivot.
+4. Pick median as pivot.
+The key process in quickSort is partition(). Target of partitions is, given an array and an element x of array as pivot, put x at its correct position in sorted array
+and put all smaller elements (smaller than x) before x, and put all greater elements (greater than x) after x. All this should be done in linear time.
+
+Best case (The pivot is always the middle element of the subarray) and average case:
+Time Complexity: O(NLogN)
+Space Complexity: O(N)
+
+Worst case is when the array is already sorted in ascending or descending order:
+Time Complexity: O(N^2)
+Space Complexity: O(N)
+
+This can be overcompensated by picking the pivot as a middle element but there will still be a configuration for which time complexity would be O(N^2).
+
+CODE: 
+
+int partition (vector<int> &nums, int left, int right)
+{
+     int pivot = nums[left];
+     int i = left, j = right;
+        
+     while (i < j) {
+          while (i < nums.size() && nums[i] <= pivot)
+              i++;
+          while (nums[j] > pivot)
+              j--;
+          if (i < j)
+              swap (nums[i], nums[j]);
+     }
+        
+     swap (nums[j], nums[left]);
+        
+     return j;
+}
+    
+void quickSort (vector<int> &nums, int left, int right)
+{
+     if (left < right) {
+          int pivot = partition(nums, left, right);
+          quickSort(nums, left, pivot - 1);
+          quickSort(nums, pivot + 1, right);
+     }
+}
+
+Quick sort is neither adaptive nor stable.
