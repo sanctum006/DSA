@@ -46,4 +46,35 @@ void quickSort (vector<int> &nums, int left, int right)
      }
 }
 
+For middle element as pivot:
+
+int partition (vector<int> &nums, int left, int right)
+{
+     int pivot = nums[(left + right)/2];
+        swap (nums[(left + right)/2], nums[left]);
+     int i = left + 1, j = right;
+        
+     while (i <= j) {
+          while (i < nums.size() && nums[i] <= pivot)
+              i++;
+          while (nums[j] > pivot)
+              j--;
+          if (i < j)
+              swap (nums[i], nums[j]);
+     }
+        
+     swap (nums[j], nums[left]);
+        
+     return j;
+}
+    
+void quickSort (vector<int> &nums, int left, int right)
+{
+     if (left < right) {
+          int pivot = partition(nums, left, right);
+          quickSort(nums, left, pivot - 1);
+          quickSort(nums, pivot + 1, right);
+     }
+}
+
 Quick sort is neither adaptive nor stable.

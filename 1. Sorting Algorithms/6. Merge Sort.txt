@@ -1,6 +1,6 @@
 Merging two arrays in a sorted array.
 
-sortArrays(int arr1[], int arr2[], int n, int m)
+mergeArrays(int arr1[], int arr2[], int n, int m)
 {
     int arr[m + n];
 
@@ -29,3 +29,45 @@ called m-way sorting.
 We can also use two-way sorting where we sort m arrays taking two at a time.
 
 This is also used in merge sort.
+
+Merge Sort:
+MERGE Sort is a Divide and Conquer algorithm. It divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves.
+The merge() function is used for merging two halves. The merge(arr, l, m, r) is a key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two
+sorted sub-arrays into one.
+
+   void merge(int arr[], int l, int mid, int r)
+   {
+        int i = l, j = mid + 1, k = 0;
+        int temp[r - l + 1];
+        
+        while (i <= mid && j <= r)
+        {
+            if (arr[i] > arr[j])
+                temp[k++] = arr[j++];
+            else
+                temp[k++] = arr[i++];
+        }
+        
+        while (i <= mid)
+        {
+            temp[k++] = arr[i++];
+        }
+        
+        while (j <= r)
+        {
+            temp[k++] = arr[j++];
+        }
+        
+        for (int t = 0; t < k; t++)
+            arr[t + l] = temp[t];
+    }
+
+    void mergeSort(int arr[], int l, int r)
+    {
+        if (l < r) {
+            int mid = (l + r)/2;
+            mergeSort (arr, l, mid);
+            mergeSort (arr, mid + 1, r);
+            merge (arr, l, mid, r);
+        }
+    }
