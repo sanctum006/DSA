@@ -1,0 +1,86 @@
+Radix sort is a sorting algorithm that sorts the elements by first grouping the individual digits of the same place value. Then, sort the elements according to their
+increasing/decreasing order. Suppose, we have an array of 8 elements. First, we will sort elements based on the value of the unit place. Then, we will sort elements
+based on the value of the tenth place. This process goes on until the last significant place.
+
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+CODE:
+
+    void countSort(vector<int> &nums, int place) {
+        int size = nums.size();
+        const int max = 10;
+        int output[size];
+        int count[max];
+        
+        for (int i = 0; i < max; ++i)
+            count[i] = 0;
+        
+        // Calculate count of elements
+        for (int i = 0; i < size; i++)
+            count[(nums[i] / place) % 10]++;
+        
+        // Calculate cumulative count
+        for (int i = 1; i < max; i++)
+            count[i] += count[i - 1];
+        
+        // Place the elements in sorted order
+        for (int i = size - 1; i >= 0; i--) {
+            output[count[(nums[i] / place) % 10] - 1] = nums[i];
+            count[(nums[i] / place) % 10]--;
+        }
+        
+        for (int i = 0; i < size; i++)
+            nums[i] = output[i];
+    }
+    
+    // Main function to implement radix sort
+    void radixsort(vector<int> &nums) {
+        // Get maximum element
+        int maxEle = *max_element(nums.begin(), nums.end());
+        
+        // Apply counting sort to sort elements based on place value.
+        for (int place = 1; maxEle / place > 0; place *= 10)
+            countingSort(nums, place);
+    }
+
+The above approach doesn't works on negative numbers. Below is a code which works for both.
+
+void countSort(vector<int> &nums, int place)
+{
+    int n = nums.size(), val, par;
+    vector<int> ans(n);
+
+    vector<int> MAP(19);
+    for (int i = 0; i < n; i++)
+    {
+        par = nums[i] < 0 ? -1 : 1;
+        val = (((nums[i] * par) / place) % 10) * par + 9;
+        MAP[val]++;
+    }
+
+    // Store prefix sum of how many times each digit occurs from -9...MAP[0] to 9...MAP[18]
+    for (int i = 1; i < 19; i++)
+        MAP[i] += MAP[i - 1];
+
+    // Create the new array from the frequency map
+    for (int i = n - 1; i >= 0; i--)
+    {
+        par = nums[i] < 0 ? -1 : 1;
+        val = (((nums[i] * par) / place) % 10) * par + 9;
+        ans[MAP[val] - 1] = nums[i];
+        MAP[val]--;
+    }
+    for (int i = 0; i < nums.size(); i++)
+        nums[i] = ans[i];
+}
+
+void radixSort(vector<int> &nums)
+{
+    int MAX = INT_MIN;
+    for (int val : nums)
+        MAX = max(MAX, abs(val));
+    
+    for (int place = 1; MAX / place > 0; place *= 10)
+        countSort(nums, place);
+}

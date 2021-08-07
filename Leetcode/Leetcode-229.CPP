@@ -34,6 +34,32 @@ using namespace std;
 //     return res;
 // }
 
+// vector<int> majorityElement(vector<int> &nums)
+// {
+//     vector<int> res;
+
+//     sort(nums.begin(), nums.end());
+
+//     int element = 0, count = 0;
+
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         if (element != nums[i])
+//         {
+//             if (count > nums.size() / 3)
+//                 res.push_back(element);
+//             element = nums[i];
+//             count = 0;
+//         }
+
+//         count++;
+//     }
+
+//     if (count > nums.size() / 3)
+//         res.push_back(element);
+//     return res;
+// }
+
 // O(N) time with O(N) space time solution with unordered map
 
 // O(N) time with O(N) space time solution with unordered map
@@ -64,6 +90,8 @@ vector<int> majorityElement(vector<int> &nums)
 
     for (auto it : nums)
     {
+        // First check for elements then increament count as it might happen that
+        // the count of same element get split into two Ex. [2,1,1,3,1,4,5,6]
         if (it == element1)
             count1++;
         else if (it == element2)

@@ -73,27 +73,17 @@ int firstMissingPositive(vector<int> &nums)
 // Only works if the array is copied to another array with type long long int
 int firstMissingPositive(vector<int> &nums)
 {
-    int n = nums.size();
-    int i = 0;
-    while (i < n)
+    for (int i = 0; i < nums.size(); i++)
     {
-        //the number isn't in the correct position
-        if (nums[i] >= 0)
-            while (nums[i] - 1 >= 0 && nums[i] - 1 < n && nums[i] != i + 1 && nums[nums[i] - 1] != nums[i])
-            {
-                swap(nums[nums[i] - 1], nums[i]);
-            }
-        i++;
+        while (nums[i] >= 1 && nums[i] <= nums.size() && nums[i] != nums[nums[i] - 1])
+            swap(nums[i], nums[nums[i] - 1]);
     }
 
-    for (i = 0; i < n; i++)
-    {
-        if (i + 1 != nums[i])
-        {
+    for (int i = 0; i < nums.size(); i++)
+        if (nums[i] != i + 1)
             return i + 1;
-        }
-    }
-    return n + 1;
+
+    return nums.size() + 1;
 }
 
 int main()

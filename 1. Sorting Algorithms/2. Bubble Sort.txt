@@ -22,7 +22,7 @@ If we do k iterations we can get k largest elements of array.
 
 CODE:
 
-for (int i = 0; i < n - 1; i ++)
+for (int i = 0; i < n - 1; i++)
 {
     for (int j = 0; j < n - i - 1; j++)
     {
