@@ -1,0 +1,40 @@
+Solution - 1
+Recursive approach, create all subsets and if any has sum euqal to target return true, else return false.
+
+bool findIfSubsetExists(int arr[], int n, int target) {
+        if (target == 0) return true;
+        
+        if (n == 0) return false;
+        
+        return findIfSubsetExists(arr, n - 1, target - arr[n - 1]) + findIfSubsetExists(arr, n - 1, target);
+    }
+    
+    bool isSubsetSum(int n, int arr[], int target){
+        return findIfSubsetExists(arr, n, target);
+    }
+
+
+
+Solution - 2
+Using recursion and memoization.
+vector<vector<int>> dp;
+
+    bool findIfSubsetExists(int arr[], int n, int target) {
+        if (target == 0) return true;
+        
+        if (n == 0) return false;
+        
+        if (dp[n][target] != -1) return dp[n][target];
+        
+        return dp[n][target] = findIfSubsetExists(arr, n - 1, target - arr[n - 1]) + findIfSubsetExists(arr, n - 1, target);
+    }
+    
+    bool isSubsetSum(int n, int arr[], int target){
+        dp.resize(n + 1, vector<int> (target + 1, -1));
+        return findIfSubsetExists(arr, n, target);
+    }
+Time Complexity: O(N * targetSum)
+Space Complexity: O(N * targetSum)
+
+Solution - 3
+Using bottom up approach.
